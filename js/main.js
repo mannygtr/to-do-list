@@ -1,36 +1,52 @@
-var workers=[{
-    name:"Jane",
-    start:"09.00 am",
-    clockIn:true
-},{
-    name:"Mary",
-    start:"09.00 am",
-    clockIn:false
-},{
-    name:"John",
-    start:"09.00 am",
-    clockIn:false
-},{
-    name:"Paul",
-    start:"09.00 am",
-    clockIn:true
-},{
-    name:"Paul",
-    start:"09.00 am",
-    clockIn:true
-},{
-    name:"Luigi",
-    start:"09.00 am",
-    clockIn:false
+var workers = [{
+    name: "Jane",
+    start: "09.00 am",
+    clockIn: true
+}, {
+    name: "Mary",
+    start: "09.00 am",
+    clockIn: false
+}, {
+    name: "John",
+    start: "09.00 am",
+    clockIn: false
+}, {
+    name: "Paul",
+    start: "09.00 am",
+    clockIn: true
+}, {
+    name: "Mario",
+    start: "09.00 am",
+    clockIn: true
+}, {
+    name: "Luigi",
+    start: "09.00 am",
+    clockIn: false
 }];
-document.write('<h1>LAZY WORKERS REMINDER</h1>');
-document.write('<ul>');
-for (var j = 0; j < workers.length; j++) {
-    if(workers[j].name!==null&&workers[j].start!==null&&workers[j].clockIn!==null){
-        document.write('<li>' + workers[j].name +  '</li>');} 
-    else {
-throw "We got some incomplete data, dude.";
+
+$(document).ready(function () {
+    generateDOM();
+});
+
+function generateDOM() {
+
+    var $h1 = $('<h1/>').text('LAZY WORKERS REMINDER').appendTo('body');
+
+    var $ul = $('<ul/>').appendTo('body');
+
+    var $li;
+
+    for (var i = 0; i < 6; i++) {
+        if (workers[i].name == null) {
+            throw "Dude, you're missing something!";
+        }
+
+        if (workers[i].clockIn === true) {
+            $li = $('<li/>').text(workers[i].name + ' ').append('<i class="glyphicon glyphicon-ok"></i>').addClass('complete');
+        } else {
+            $li = $('<li/>').text(workers[i].name + ' ');
+        }
+        $ul.append($li)
+        $('li.complete').remove();
+    }
 }
-}
-console.log(workers);
-document.write('</ul>');
