@@ -1,28 +1,26 @@
-var workers = [{
-    name: "Jane",
-    start: "09.00 am",
-    clockIn: true
-}, {
-    name: "Mary",
-    start: "09.00 am",
-    clockIn: false
-}, {
-    name: "John",
-    start: "09.00 am",
-    clockIn: false
-}, {
-    name: "Paul",
-    start: "09.00 am",
-    clockIn: true
-}, {
-    name: "Mario",
-    start: "09.00 am",
-    clockIn: true
-}, {
-    name: "Luigi",
-    start: "09.00 am",
-    clockIn: false
-}];
+var workers = [];
+
+function Task(workername) {
+	var deadline = new Date();
+	deadline.setDate(deadline.getDate() + 7);
+    return {
+        name: workername,
+        clockIn: false,
+        date: deadline,
+    }
+}
+
+addTask('Jane');
+addTask('Mary');
+addTask('John');
+addTask('Paul');
+addTask('Mario');
+addTask('Luigi');
+
+function addTask(workername) {
+    var task = new Task(workername);
+    workers.push(task);
+}
 
 $(document).ready(function () {
     generateDOM();
